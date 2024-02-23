@@ -1,66 +1,48 @@
-// // Assignment code here
-
-
-// // Get references to the #generate element
-// var generateBtn = document.querySelector("#generate");
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
-
-
-// Function to generate a random password
-function generatePassword() {
-  // Define character sets for different types of characters
-  const lowerCase = 'abcdefghijklmnopqrstuvwxyz';
-  const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const numbers = '0123456789';
-  const symbols = '!@#$%^&*()-_=+[]{}|;:,.<>?';
-
-  // Prompt user for password length
-  let length = parseInt(prompt('Enter the length of the password (between 8 and 128 characters):'));
-  // Validate the length
-  if (isNaN(length) || length < 8 || length > 128) {
-    alert('Please enter a valid number between 8 and 128.');
+document.getElementById('generate').addEventListener('click', function() {
+  var passwordLength = prompt('Enter the length of the password (8-128 characters)');
+  if (passwordLength === null) {
+    return;
+  }
+  passwordLength = parseInt(passwordLength);
+  if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+    alert('Please enter a valid password length (8-128 characters)');
     return;
   }
 
-  // Ask user for character types to include
-  let useLowerCase = confirm('Include lowercase letters?');
-  let useUpperCase = confirm('Include uppercase letters?');
-  let useNumbers = confirm('Include numbers?');
-  let useSymbols = confirm('Include symbols?');
+  var includeLowercase = confirm('Include lowercase letters?');
+  var includeUppercase = confirm('Include uppercase letters?');
+  var includeNumbers = confirm('Include numbers?');
+  var includeSpecialChars = confirm('Include special characters?');
 
-  // Validate that at least one character type is selected
-  if (!useLowerCase && !useUpperCase && !useNumbers && !useSymbols) {
-    alert('Please select at least one character type.');
+  if (!(includeLowercase || includeUppercase || includeNumbers || includeSpecialChars)) {
+    alert('Please select at least one character type');
     return;
   }
 
-  // Create a character set based on selected types
-  let charSet = '';
-  if (useLowerCase) charSet += lowerCase;
-  if (useUpperCase) charSet += upperCase;
-  if (useNumbers) charSet += numbers;
-  if (useSymbols) charSet += symbols;
+  var lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+  var uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var numberChars = '0123456789';
+  var specialChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
 
-  // Generate the password
-  let password = '';
-  for (let i = 0; i < length; i++) {
-    password += charSet.charAt(Math.floor(Math.random() * charSet.length));
+  var availableChars = '';
+  if (includeLowercase) {
+    availableChars += lowercaseChars;
+  }
+  if (includeUppercase) {
+    availableChars += uppercaseChars;
+  }
+  if (includeNumbers) {
+    availableChars += numberChars;
+  }
+  if (includeSpecialChars) {
+    availableChars += specialChars;
   }
 
-  // Display the generated password
-  alert('Your password is: ' + password);
-}
+  var password = '';
+  for (var i = 0; i < passwordLength; i++) {
+    var randomIndex = Math.floor(Math.random() * availableChars.length);
+    password += availableChars[randomIndex];
+  }
 
-// Attach the generatePassword function to a button click event
-document.getElementById('generate').addEventListener('click', generatePassword);
+  document.getElementById('password').value = password;
+});
