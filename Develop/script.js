@@ -32,7 +32,7 @@ clipboardEl.addEventListener('click', function() {
 
   resultEl.innerText = password;
 
-  // Copy password to clipboard
+  // copy password to clipboard
   if (password) {
     const textarea = document.createElement('textarea');
     textarea.value = password;
