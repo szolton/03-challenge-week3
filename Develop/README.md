@@ -17,3 +17,4 @@ Here, you can see the added element where you can copy the new password to your 
 ![password](./Develop/images/password.png)
 
 Here, you can see the final password results.
+
