@@ -1,6 +1,6 @@
 # Password Generator Starter Code
 
-The purpose of this project was to make a random password generator. 
+The purpose of this project was to make a random password generator. You can find the CSS, HTML, and README right away in the repository. The javascript is under the develop folder, along with images used for the README.
 
 You can use this project by loading up the password generator, selecting the criteria you want included in the password, copy the password to your clipboard, and it automatically generates a random password.
 
