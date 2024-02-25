@@ -14,7 +14,7 @@ const randomFunc = {
   symbol: getRandomSymbol
 };
 
-// generate event listener
+// generates the event listener
 clipboardEl.addEventListener('click', function() {
   const length = +lengthEl.value;
   const hasLower = lowercaseEl.checked;
@@ -22,26 +22,13 @@ clipboardEl.addEventListener('click', function() {
   const hasNumber = numbersEl.checked;
   const hasSymbol = symbolsEl.checked;
 
-  const password = generatePassword(
+  resultEl.innerText = generatePassword(
     hasLower,
     hasUpper,
     hasNumber,
     hasSymbol,
     length
-  );
-
-  resultEl.innerText = password;
-
-  // copy password to clipboard
-  if (password) {
-    const textarea = document.createElement('textarea');
-    textarea.value = password;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand('copy');
-    textarea.remove();
-    alert('Password copied to clipboard!');
-  }
+    );
 });
 
 // generate password function
@@ -50,23 +37,23 @@ function generatePassword(lower, upper, number, symbol, length) {
   const typesCount = lower + upper + number + symbol;
   const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(item => Object.values(item)[0]);
 
-  if (typesCount === 0) {
+  if(typesCount === 0) {
     return '';
   }
 
-  for (let i = 0; i < length; i += typesCount) {
+  for(let i = 0; i < length; i += typesCount) {
     typesArr.forEach(type => {
       const funcName = Object.keys(type)[0];
       generatedPassword += randomFunc[funcName]();
     });
   }
 
-  const finalPassword = generatedPassword.slice(0, length);
+const finalPassword = generatedPassword.slice(0, length);
 
   return finalPassword;
 }
 
-// generator functions
+// generator functions for the
 function getRandomUpper() {
   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
 }
@@ -83,3 +70,20 @@ function getRandomSymbol() {
   const symbols = '!@#$%^&*(){}[]=<>/,.';
   return symbols[Math.floor(Math.random() * symbols.length)];
 }
+
+// copy password to clipboard
+clipboardEl.addEventListener('click', () => {
+  const textarea = document.createElement('textarea');
+  const password = resultEl.innerText;
+
+  if(!password) {
+    return;
+  }
+
+  textarea.value = password;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  textarea.remove();
+  alert('Password copied to clipboard!');
+});
