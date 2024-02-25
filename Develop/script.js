@@ -1,48 +1,85 @@
-document.getElementById('generate').addEventListener('click', function() {
-  var passwordLength = prompt('Enter the length of the password (8-128 characters)');
-  if (passwordLength === null) {
-    return;
-  }
-  passwordLength = parseInt(passwordLength);
-  if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
-    alert('Please enter a valid password length (8-128 characters)');
-    return;
-  }
+// DOM elements
+const resultEl = document.getElementById('result');
+const lengthEl = document.getElementById('length');
+const uppercaseEl = document.getElementById('uppercase');
+const lowercaseEl = document.getElementById('lowercase');
+const numbersEl = document.getElementById('numbers');
+const symbolsEl = document.getElementById('symbols');
+const clipboardEl = document.getElementById('clipboard');
 
-  var includeLowercase = confirm('Include lowercase letters?');
-  var includeUppercase = confirm('Include uppercase letters?');
-  var includeNumbers = confirm('Include numbers?');
-  var includeSpecialChars = confirm('Include special characters?');
+const randomFunc = {
+  lower: getRandomLower,
+  upper: getRandomUpper,
+  number: getRandomNumber,
+  symbol: getRandomSymbol
+};
 
-  if (!(includeLowercase || includeUppercase || includeNumbers || includeSpecialChars)) {
-    alert('Please select at least one character type');
-    return;
-  }
+// generate event listener
+clipboardEl.addEventListener('click', function() {
+  const length = +lengthEl.value;
+  const hasLower = lowercaseEl.checked;
+  const hasUpper = uppercaseEl.checked;
+  const hasNumber = numbersEl.checked;
+  const hasSymbol = symbolsEl.checked;
 
-  var lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-  var uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var numberChars = '0123456789';
-  var specialChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+  const password = generatePassword(
+    hasLower,
+    hasUpper,
+    hasNumber,
+    hasSymbol,
+    length
+  );
 
-  var availableChars = '';
-  if (includeLowercase) {
-    availableChars += lowercaseChars;
-  }
-  if (includeUppercase) {
-    availableChars += uppercaseChars;
-  }
-  if (includeNumbers) {
-    availableChars += numberChars;
-  }
-  if (includeSpecialChars) {
-    availableChars += specialChars;
-  }
+  resultEl.innerText = password;
 
-  var password = '';
-  for (var i = 0; i < passwordLength; i++) {
-    var randomIndex = Math.floor(Math.random() * availableChars.length);
-    password += availableChars[randomIndex];
+  // Copy password to clipboard
+  if (password) {
+    const textarea = document.createElement('textarea');
+    textarea.value = password;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+    alert('Password copied to clipboard!');
   }
-
-  document.getElementById('password').value = password;
 });
+
+// generate password function
+function generatePassword(lower, upper, number, symbol, length) {
+  let generatedPassword = '';
+  const typesCount = lower + upper + number + symbol;
+  const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(item => Object.values(item)[0]);
+
+  if (typesCount === 0) {
+    return '';
+  }
+
+  for (let i = 0; i < length; i += typesCount) {
+    typesArr.forEach(type => {
+      const funcName = Object.keys(type)[0];
+      generatedPassword += randomFunc[funcName]();
+    });
+  }
+
+  const finalPassword = generatedPassword.slice(0, length);
+
+  return finalPassword;
+}
+
+// generator functions
+function getRandomUpper() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+}
+
+function getRandomLower() {
+  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+}
+
+function getRandomNumber() {
+  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+}
+
+function getRandomSymbol() {
+  const symbols = '!@#$%^&*(){}[]=<>/,.';
+  return symbols[Math.floor(Math.random() * symbols.length)];
+}
