@@ -6,15 +6,15 @@ You can use this project by loading up the password generator, selecting the cri
 
 This youtube video tutorial: https://www.youtube.com/watch?v=duNmhKgtcsI was a super helpful resource in helping break down the requirements and what I had to do to successfully meet the criteria for the challenge. It really helped me understand event listeners and how to work with basic JavaScript.
 
-![password generator](./Develop/images/Screen%20Shot%202024-02-24%20at%2011.22.04%20PM.png)
+![password generator](./images/Screen%20Shot%202024-02-24%20at%2011.22.04%20PM.png)
 
 You can see in this screenshot the checked boxes that the elements you want to include in your random password. You can also adjust the password length to be between 8-128 characters and choose how long you want the password to be.
 
-![copyclipboard](./Develop/images/clipboard.png/)
+![copyclipboard](./images/clipboard.png)
 
 Here, you can see the added element where you can copy the new password to your clipboard.
 
-![password](./Develop/images/password.png)
+![password](./images/password.png)
 
 Here, you can see the final password results.
 
