@@ -14,6 +14,6 @@ You can see in this screenshot the checked boxes that the elements you want to i
 
 Here, you can see the added element where you can copy the new password to your clipboard.
 
-![password](./Develop/images/password.png)
+![password](./Develop/images/password%20a.png)
 
 Here, you can see the final password results.
