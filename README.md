@@ -10,7 +10,7 @@ This youtube video tutorial: https://www.youtube.com/watch?v=duNmhKgtcsI was a s
 
 You can see in this screenshot the checked boxes that the elements you want to include in your random password. You can also adjust the password length to be between 8-128 characters and choose how long you want the password to be.
 
-![copyclipboard](./Develop/images/clipboard.png/)
+![copyclipboard](https://github.com/szolton/03-challenge-week3/blob/b5f5036eb5d13a1886c18c69dfced7a0d30fe512/Develop/images/clipboard.png)
 
 Here, you can see the added element where you can copy the new password to your clipboard.
 
