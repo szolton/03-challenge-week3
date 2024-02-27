@@ -1,5 +1,5 @@
 // DOM elements
-const resultEl = document.getElementById('result');
+const resultEl = document.getElementById('password');
 const lengthEl = document.getElementById('length');
 const uppercaseEl = document.getElementById('uppercase');
 const lowercaseEl = document.getElementById('lowercase');
@@ -22,7 +22,7 @@ clipboardEl.addEventListener('click', function() {
   const hasNumber = numbersEl.checked;
   const hasSymbol = symbolsEl.checked;
 
-  resultEl.innerText = generatePassword(
+  resultEl.value = generatePassword(
     hasLower,
     hasUpper,
     hasNumber,
@@ -48,7 +48,7 @@ function generatePassword(lower, upper, number, symbol, length) {
     });
   }
 
-const finalPassword = generatedPassword.slice(0, length);
+  const finalPassword = generatedPassword.slice(0, length);
 
   return finalPassword;
 }
@@ -74,11 +74,11 @@ function getRandomSymbol() {
 // copy password to clipboard
 clipboardEl.addEventListener('click', () => {
   const textarea = document.createElement('textarea');
-  const password = resultEl.innerText;
+  const password = resultEl.value;
 
   if(!password) {
     return;
-  }
+  } 
 
   textarea.value = password;
   document.body.appendChild(textarea);
