@@ -14,6 +14,6 @@ You can see in this screenshot the checked boxes that the elements you want to i
 
 Here, you can see the added element where you can copy the new password to your clipboard.
 
-![password]([./Develop/images/password.png](https://github.com/szolton/03-challenge-week3/blob/a4365405ece156e7a3591706cbf442b3ef4317a7/Develop/images/password%20a.png)https://github.com/szolton/03-challenge-week3/blob/a4365405ece156e7a3591706cbf442b3ef4317a7/Develop/images/password%20a.png)
+![password]([[./Develop/images/password.png](https://github.com/szolton/03-challenge-week3/blob/a4365405ece156e7a3591706cbf442b3ef4317a7/Develop/images/password%20a.png)https://github.com/szolton/03-challenge-week3/blob/a4365405ece156e7a3591706cbf442b3ef4317a7/Develop/images/password%20a.png](https://github.com/szolton/03-challenge-week3/blob/6161996794f480e6609fe9319e6ece052b6188bb/Develop/images/password%20a.png))
 
 Here, you can see the final password results.
