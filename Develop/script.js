@@ -6,6 +6,7 @@ const lowercaseEl = document.getElementById('lowercase');
 const numbersEl = document.getElementById('numbers');
 const symbolsEl = document.getElementById('symbols');
 const clipboardEl = document.getElementById('clipboard');
+const errorEl = document.getElementById('error');
 
 const randomFunc = {
   lower: getRandomLower,
@@ -17,10 +18,18 @@ const randomFunc = {
 // generates the event listener
 clipboardEl.addEventListener('click', function() {
   const length = +lengthEl.value;
-  const hasLower = lowercaseEl.checked;
-  const hasUpper = uppercaseEl.checked;
-  const hasNumber = numbersEl.checked;
-  const hasSymbol = symbolsEl.checked;
+  const hasLower = lowercaseEl.checked ? 1 : 0;
+  const hasUpper = uppercaseEl.checked ? 1 : 0;
+  const hasNumber = numbersEl.checked ? 1 : 0;
+  const hasSymbol = symbolsEl.checked ? 1 : 0;
+
+  if (length < 8 || length > 128) {
+    errorEl.textContent = 'Error';
+    resultEl.value = '';
+    return; // Stop execution if length is not within the valid range
+  } else {
+    errorEl.textContent = '';
+  }
 
   resultEl.value = generatePassword(
     hasLower,
