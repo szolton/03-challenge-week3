@@ -25,7 +25,7 @@ clipboardEl.addEventListener('click', function() {
 
   // sets the password length criteria
   if (length < 8 || length > 128) {
-    errorEl.textContent = 'Error!!';
+    errorEl.textContent = 'Error!';
     resultEl.value = '';
     return; // Stops the execution if length is not within the valid range
   } else {
