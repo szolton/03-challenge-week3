@@ -14,6 +14,12 @@ You can see in this screenshot the checked boxes that the elements you want to i
 
 Here, you can see the added element where you can copy the new password to your clipboard.
 
-![password](./Develop/images/password%20a.png)
+![password](./Develop/images/password-b.png)
 
 Here, you can see the final password results.
+
+If you try to type in a number outside of 8-128 characters, it comes back as an error.
+
+![error](./Develop/images/error-message.png)
+
+Follow this link to the deployed application: https://szolton.github.io/03-challenge-week3/

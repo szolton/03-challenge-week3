@@ -23,10 +23,11 @@ clipboardEl.addEventListener('click', function() {
   const hasNumber = numbersEl.checked ? 1 : 0;
   const hasSymbol = symbolsEl.checked ? 1 : 0;
 
+  // sets the password length criteria
   if (length < 8 || length > 128) {
     errorEl.textContent = 'Error';
     resultEl.value = '';
-    return; // Stop execution if length is not within the valid range
+    return; // Stops the execution if length is not within the valid range
   } else {
     errorEl.textContent = '';
   }
